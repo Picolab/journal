@@ -43,7 +43,7 @@ ruleset io.picolabs.journal {
       entry = event:attrs().put("timestamp", timestamp);
     }
     fired {
-      ent:entries{time:now()} := entry;
+      ent:entries{timestamp} := entry;
       raise journal event "entry_added" attributes entry;
     }
   }
