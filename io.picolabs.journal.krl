@@ -12,7 +12,7 @@ ruleset io.picolabs.journal {
     app = {"name":"journalling","version":"0.0"/* img: , pre: , ..*/};
     jsx = "";
     tile = function() {
-      jsx;
+      "<div>Hello World!<div>Hello World2!<div/></div>";
     }
     // ---------- 
     __testing = { "queries": [ { "name": "__testing" }
@@ -33,7 +33,7 @@ ruleset io.picolabs.journal {
     }
   }
   // ---------- Manifold required API event calls  
-  rule discovery { select when manifold apps send_directive("app discovered...", {"app": app, "rid": meta:rid}); }
+  rule discovery { select when manifold apps send_directive("app discovered...", {"app": app, "rid": meta:rid, "tile":tile()}); }
   rule tile { select when manifold tile send_directive("retrieved tile ", {"app": tile()}); }
   // ---------- 
 
