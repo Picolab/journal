@@ -10,9 +10,9 @@ ruleset io.picolabs.journal {
   global {
     // ---------- Manifold Configuration/Dependencies 
     app = {"name":"journalling","version":"0.0"/* img: , pre: , ..*/};
-    jsx = "";
+    jsx = "<JournalTemplate header='Test Header!' entries={[{'title': 'testTitle1', 'data': 'testData1'}, {'title': 'testTitle2', 'data': 'testData2'}]} />";
     tile = function() {
-      "<div>Hello World!<div>Hello World2!<div/></div>";
+      jsx;
     }
     // ---------- 
     __testing = { "queries": [ { "name": "__testing" }
