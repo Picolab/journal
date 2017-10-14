@@ -10,13 +10,17 @@ ruleset io.picolabs.journal {
   global {
     // ---------- Manifold Configuration/Dependencies 
     app = {"name":"journalling","version":"0.0"/* img: , pre: , ..*/};
-    jsx = "<JournalTemplate header='Test Header!' />";
+    jsx = "<JournalTemplate header='Picolabs Journalling' />";
     tile = function() {
       jsx;
     }
-    binding = {"entries": [{"title": "testTitle1", "data": "testData1"}, {"title": "testTitle2", "data": "testData2"}] };
+    getEntries = function(){
+      ent:entries.values();
+    } 
     bindings = function(){
-      binding;
+      {
+        "entries": getEntries()
+      };
     }
     // ---------- 
     __testing = { "queries": [ { "name": "__testing" }
@@ -53,7 +57,7 @@ ruleset io.picolabs.journal {
   rule initial_entry { // when initialized, raise new_entry event with journal initialized memo.
     select when journal initialized
     fired {
-      raise journal event "new_entry" attributes { "memo": "journal initialized" }
+      raise journal event "new_entry" attributes { "memo": "Journal Initialized", "title": "First Entry" }
     }
   }
   rule journal_new_entry {
