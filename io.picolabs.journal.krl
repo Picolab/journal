@@ -10,9 +10,13 @@ ruleset io.picolabs.journal {
   global {
     // ---------- Manifold Configuration/Dependencies 
     app = {"name":"journalling","version":"0.0"/* img: , pre: , ..*/};
-    jsx = "<JournalTemplate header='Test Header!' entries={[{'title': 'testTitle1', 'data': 'testData1'}, {'title': 'testTitle2', 'data': 'testData2'}]} />";
+    jsx = "<JournalTemplate header='Test Header!' />";
     tile = function() {
       jsx;
+    }
+    binding = {"entries": [{"title": "testTitle1", "data": "testData1"}, {"title": "testTitle2", "data": "testData2"}] };
+    bindings = function(){
+      binding;
     }
     // ---------- 
     __testing = { "queries": [ { "name": "__testing" }
@@ -33,7 +37,7 @@ ruleset io.picolabs.journal {
     }
   }
   // ---------- Manifold required API event calls  
-  rule discovery { select when manifold apps send_directive("app discovered...", {"app": app, "rid": meta:rid, "tile":tile()}); }
+  rule discovery { select when manifold apps send_directive("app discovered...", {"app": app, "rid": meta:rid, "tile":tile(), "bindings": bindings()} ); }
   rule tile { select when manifold tile send_directive("retrieved tile ", {"app": tile()}); }
   // ---------- 
 
