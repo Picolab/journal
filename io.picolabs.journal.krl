@@ -15,7 +15,7 @@ ruleset io.picolabs.journal {
       jsx;
     }
     getEntries = function(){
-      ent:entries.values();
+      ent:entries.values().reverse().filter(function(v,k){k<3});
     } 
     bindings = function(){
       {
