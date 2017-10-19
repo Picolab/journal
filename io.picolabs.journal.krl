@@ -28,7 +28,7 @@ ruleset io.picolabs.journal {
                              , { "name": "entriesBetween", "args": [ "startDate", "endDate" ] }
                              , { "name": "tile" }
                              ]
-                , "events": [ { "domain": "journal", "type": "new_entry", "attrs": [ "memo" ] }
+                , "events": [ { "domain": "journal", "type": "new_entry", "attrs": [ "title", "memo" ] }
                             , { "domain": "manifold", "type": "apps" }
                             , { "domain": "manifold", "type": "tile" }
                             ]
